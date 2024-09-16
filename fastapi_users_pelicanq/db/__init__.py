@@ -4,7 +4,7 @@ __all__ = ["BaseUserDatabase", "UserDatabaseDependency"]
 
 
 try:  # pragma: no cover
-    from fastapi_users_db_sqlalchemy import (  # noqa: F401
+    from fastapi_users_db_sqlalchemy_pelicanq import (  # noqa: F401
         SQLAlchemyBaseOAuthAccountTable,
         SQLAlchemyBaseOAuthAccountTableUUID,
         SQLAlchemyBaseUserTable,
