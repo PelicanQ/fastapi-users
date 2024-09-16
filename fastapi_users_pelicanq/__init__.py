@@ -1,6 +1,6 @@
 """Ready-to-use and customizable users management for FastAPI."""
 
-__version__ = "13.0.3"
+__version__ = "13.0.4"
 
 from fastapi_users_pelicanq import models, schemas  # noqa: F401
 from fastapi_users_pelicanq.exceptions import InvalidID, InvalidPasswordException

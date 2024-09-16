@@ -69,7 +69,7 @@ class BaseUserManager(Generic[models.UP, models.ID]):
         :raises UserNotExists: The user does not exist.
         :return: A user.
         """
-        user = await self.user_db.get(id)
+        user = self.user_db.get(id)
 
         if user is None:
             raise exceptions.UserNotExists()
@@ -84,7 +84,7 @@ class BaseUserManager(Generic[models.UP, models.ID]):
         :raises UserNotExists: The user does not exist.
         :return: A user.
         """
-        user = await self.user_db.get_by_email(user_email)
+        user = self.user_db.get_by_email(user_email)
 
         if user is None:
             raise exceptions.UserNotExists()
@@ -100,7 +100,7 @@ class BaseUserManager(Generic[models.UP, models.ID]):
         :raises UserNotExists: The user does not exist.
         :return: A user.
         """
-        user = await self.user_db.get_by_oauth_account(oauth, account_id)
+        user = self.user_db.get_by_oauth_account(oauth, account_id)
 
         if user is None:
             raise exceptions.UserNotExists()
@@ -128,7 +128,7 @@ class BaseUserManager(Generic[models.UP, models.ID]):
         """
         await self.validate_password(user_create.password, user_create)
 
-        existing_user = await self.user_db.get_by_email(user_create.email)
+        existing_user = self.user_db.get_by_email(user_create.email)
         if existing_user is not None:
             raise exceptions.UserAlreadyExists()
 
@@ -140,7 +140,7 @@ class BaseUserManager(Generic[models.UP, models.ID]):
         password = user_dict.pop("password")
         user_dict["hashed_password"] = self.password_helper.hash(password)
 
-        created_user = await self.user_db.create(user_dict)
+        created_user = self.user_db.create(user_dict)
 
         await self.on_after_register(created_user, request)
 
@@ -205,7 +205,7 @@ class BaseUserManager(Generic[models.UP, models.ID]):
                 user = await self.get_by_email(account_email)
                 if not associate_by_email:
                     raise exceptions.UserAlreadyExists()
-                user = await self.user_db.add_oauth_account(user, oauth_account_dict)
+                user = self.user_db.add_oauth_account(user, oauth_account_dict)
             except exceptions.UserNotExists:
                 # Create account
                 password = self.password_helper.generate()
@@ -214,8 +214,8 @@ class BaseUserManager(Generic[models.UP, models.ID]):
                     "hashed_password": self.password_helper.hash(password),
                     "is_verified": is_verified_by_default,
                 }
-                user = await self.user_db.create(user_dict)
-                user = await self.user_db.add_oauth_account(user, oauth_account_dict)
+                user = self.user_db.create(user_dict)
+                user = self.user_db.add_oauth_account(user, oauth_account_dict)
                 await self.on_after_register(user, request)
         else:
             # Update oauth
@@ -224,7 +224,7 @@ class BaseUserManager(Generic[models.UP, models.ID]):
                     existing_oauth_account.account_id == account_id
                     and existing_oauth_account.oauth_name == oauth_name
                 ):
-                    user = await self.user_db.update_oauth_account(
+                    user = self.user_db.update_oauth_account(
                         user, existing_oauth_account, oauth_account_dict
                     )
 
@@ -266,7 +266,7 @@ class BaseUserManager(Generic[models.UP, models.ID]):
             "refresh_token": refresh_token,
         }
 
-        user = await self.user_db.add_oauth_account(user, oauth_account_dict)
+        user = self.user_db.add_oauth_account(user, oauth_account_dict)
 
         await self.on_after_update(user, {}, request)
 
@@ -479,7 +479,7 @@ class BaseUserManager(Generic[models.UP, models.ID]):
         triggered the operation, defaults to None.
         """
         await self.on_before_delete(user, request)
-        await self.user_db.delete(user)
+        self.user_db.delete(user)
         await self.on_after_delete(user, request)
 
     async def validate_password(
@@ -658,7 +658,7 @@ class BaseUserManager(Generic[models.UP, models.ID]):
             return None
         # Update password hash to a more robust one if needed
         if updated_password_hash is not None:
-            await self.user_db.update(user, {"hashed_password": updated_password_hash})
+            self.user_db.update(user, {"hashed_password": updated_password_hash})
 
         return user
 
@@ -679,7 +679,7 @@ class BaseUserManager(Generic[models.UP, models.ID]):
                 )
             else:
                 validated_update_dict[field] = value
-        return await self.user_db.update(user, validated_update_dict)
+        return self.user_db.update(user, validated_update_dict)
 
 
 class UUIDIDMixin:
