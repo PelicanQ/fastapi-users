@@ -119,11 +119,11 @@ requires = ["hatchling", "hatch-regex-commit"]
 build-backend = "hatchling.build"
 
 [project]
-name = "fastapi-users"
+name = "fastapi-users-pelicanq"
 authors = [
   { name = "François Voron", email = "fvoron@gmail.com" }
 ]
-description = "Ready-to-use and customizable users management for FastAPI"
+description = "Fork for small edit of original package."
 readme = "README.md"
 dynamic = ["version"]
 classifiers = [
