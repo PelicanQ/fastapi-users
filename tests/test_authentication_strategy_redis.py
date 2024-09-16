@@ -3,7 +3,7 @@ from typing import Dict, Optional, Tuple
 
 import pytest
 
-from fastapi_users.authentication.strategy import RedisStrategy
+from fastapi_users_pelicanq.authentication.strategy import RedisStrategy
 from tests.conftest import IDType, UserModel
 
 

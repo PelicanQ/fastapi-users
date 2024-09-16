@@ -5,8 +5,8 @@ import pytest
 import pytest_asyncio
 from fastapi import FastAPI, status
 
-from fastapi_users.authentication import Authenticator
-from fastapi_users.router import ErrorCode, get_users_router
+from fastapi_users_pelicanq.authentication import Authenticator
+from fastapi_users_pelicanq.router import ErrorCode, get_users_router
 from tests.conftest import User, UserModel, UserUpdate, get_mock_authentication
 
 

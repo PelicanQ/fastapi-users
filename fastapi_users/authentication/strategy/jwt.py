@@ -2,13 +2,13 @@ from typing import Generic, List, Optional
 
 import jwt
 
-from fastapi_users import exceptions, models
-from fastapi_users.authentication.strategy.base import (
+from fastapi_users_pelicanq import exceptions, models
+from fastapi_users_pelicanq.authentication.strategy.base import (
     Strategy,
     StrategyDestroyNotSupportedError,
 )
-from fastapi_users.jwt import SecretType, decode_jwt, generate_jwt
-from fastapi_users.manager import BaseUserManager
+from fastapi_users_pelicanq.jwt import SecretType, decode_jwt, generate_jwt
+from fastapi_users_pelicanq.manager import BaseUserManager
 
 
 class JWTStrategyDestroyNotSupportedError(StrategyDestroyNotSupportedError):

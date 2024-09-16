@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Any, Dict, Generic, Optional, Protocol
 
-from fastapi_users.authentication.strategy.db.models import AP
+from fastapi_users_pelicanq.authentication.strategy.db.models import AP
 
 
 class AccessTokenDatabase(Protocol, Generic[AP]):

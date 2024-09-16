@@ -23,7 +23,7 @@ addopts = "--ignore=test_build.py"
 markers = [
 	"authentication",
 	"db",
-	"fastapi_users",
+	"fastapi_users_pelicanq",
 	"jwt",
 	"manager",
 	"oauth",
@@ -45,7 +45,7 @@ allow-direct-references = true
 [tool.hatch.version]
 source = "regex_commit"
 commit_extra_args = ["-e"]
-path = "fastapi_users/__init__.py"
+path = "fastapi_users_pelicanq/__init__.py"
 
 [tool.hatch.envs.default]
 installer = "uv"
@@ -79,28 +79,28 @@ dependencies = [
 
 [tool.hatch.envs.default.scripts]
 lint = [
-  "isort ./fastapi_users ./tests",
-  "isort ./docs/src -o fastapi_users",
-  "isort ./examples -o fastapi_users -p app",
+  "isort ./fastapi_users_pelicanq ./tests",
+  "isort ./docs/src -o fastapi_users_pelicanq",
+  "isort ./examples -o fastapi_users_pelicanq -p app",
   "ruff format .",
   "ruff check --fix .",
-  "mypy fastapi_users/",
+  "mypy fastapi_users_pelicanq/",
 ]
 lint-check = [
-  "isort --check-only ./fastapi_users ./tests",
-  "isort --check-only  ./docs/src -o fastapi_users",
-  "isort --check-only ./examples -o fastapi_users -p app",
+  "isort --check-only ./fastapi_users_pelicanq ./tests",
+  "isort --check-only  ./docs/src -o fastapi_users_pelicanq",
+  "isort --check-only ./examples -o fastapi_users_pelicanq -p app",
   "ruff format .",
   "ruff check .",
-  "mypy fastapi_users/",
+  "mypy fastapi_users_pelicanq/",
 ]
 docs = "mkdocs serve"
 
 [tool.hatch.envs.test]
 
 [tool.hatch.envs.test.scripts]
-test = "pytest --cov=fastapi_users/ --cov-report=term-missing --cov-fail-under=100"
-test-cov-xml = "pytest --cov=fastapi_users/ --cov-report=xml --cov-fail-under=100"
+test = "pytest --cov=fastapi_users_pelicanq/ --cov-report=term-missing --cov-fail-under=100"
+test-cov-xml = "pytest --cov=fastapi_users_pelicanq/ --cov-report=xml --cov-fail-under=100"
 
 [[tool.hatch.envs.test.matrix]]
 pydantic = ["v1", "v2"]

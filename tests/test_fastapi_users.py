@@ -5,7 +5,7 @@ import pytest
 import pytest_asyncio
 from fastapi import Depends, FastAPI, status
 
-from fastapi_users import FastAPIUsers, schemas
+from fastapi_users_pelicanq import FastAPIUsers, schemas
 from tests.conftest import IDType, User, UserCreate, UserModel, UserUpdate
 
 
@@ -17,19 +17,19 @@ async def test_app_client(
     oauth_client,
     get_test_client,
 ) -> AsyncGenerator[httpx.AsyncClient, None]:
-    fastapi_users = FastAPIUsers[UserModel, IDType](
+    fastapi_users_pelicanq = FastAPIUsers[UserModel, IDType](
         get_user_manager, [mock_authentication]
     )
 
     app = FastAPI()
-    app.include_router(fastapi_users.get_register_router(User, UserCreate))
-    app.include_router(fastapi_users.get_reset_password_router())
-    app.include_router(fastapi_users.get_auth_router(mock_authentication))
+    app.include_router(fastapi_users_pelicanq.get_register_router(User, UserCreate))
+    app.include_router(fastapi_users_pelicanq.get_reset_password_router())
+    app.include_router(fastapi_users_pelicanq.get_auth_router(mock_authentication))
     app.include_router(
-        fastapi_users.get_oauth_router(oauth_client, mock_authentication, secret)
+        fastapi_users_pelicanq.get_oauth_router(oauth_client, mock_authentication, secret)
     )
     app.include_router(
-        fastapi_users.get_oauth_associate_router(oauth_client, User, secret)
+        fastapi_users_pelicanq.get_oauth_associate_router(oauth_client, User, secret)
     )
 
     @app.delete("/users/me")
@@ -37,30 +37,30 @@ async def test_app_client(
         return None
 
     app.include_router(
-        fastapi_users.get_users_router(User, UserUpdate), prefix="/users"
+        fastapi_users_pelicanq.get_users_router(User, UserUpdate), prefix="/users"
     )
-    app.include_router(fastapi_users.get_verify_router(User))
+    app.include_router(fastapi_users_pelicanq.get_verify_router(User))
 
     @app.get("/current-user", response_model=User)
-    def current_user(user: UserModel = Depends(fastapi_users.current_user())):
+    def current_user(user: UserModel = Depends(fastapi_users_pelicanq.current_user())):
         return user
 
     @app.get("/current-active-user", response_model=User)
     def current_active_user(
-        user: UserModel = Depends(fastapi_users.current_user(active=True)),
+        user: UserModel = Depends(fastapi_users_pelicanq.current_user(active=True)),
     ):
         return user
 
     @app.get("/current-verified-user", response_model=User)
     def current_verified_user(
-        user: UserModel = Depends(fastapi_users.current_user(verified=True)),
+        user: UserModel = Depends(fastapi_users_pelicanq.current_user(verified=True)),
     ):
         return user
 
     @app.get("/current-superuser", response_model=User)
     def current_superuser(
         user: UserModel = Depends(
-            fastapi_users.current_user(active=True, superuser=True)
+            fastapi_users_pelicanq.current_user(active=True, superuser=True)
         ),
     ):
         return user
@@ -68,21 +68,21 @@ async def test_app_client(
     @app.get("/current-verified-superuser", response_model=User)
     def current_verified_superuser(
         user: UserModel = Depends(
-            fastapi_users.current_user(active=True, verified=True, superuser=True)
+            fastapi_users_pelicanq.current_user(active=True, verified=True, superuser=True)
         ),
     ):
         return user
 
     @app.get("/optional-current-user")
     def optional_current_user(
-        user: Optional[UserModel] = Depends(fastapi_users.current_user(optional=True)),
+        user: Optional[UserModel] = Depends(fastapi_users_pelicanq.current_user(optional=True)),
     ):
         return schemas.model_validate(User, user) if user else None
 
     @app.get("/optional-current-active-user")
     def optional_current_active_user(
         user: Optional[UserModel] = Depends(
-            fastapi_users.current_user(optional=True, active=True)
+            fastapi_users_pelicanq.current_user(optional=True, active=True)
         ),
     ):
         return schemas.model_validate(User, user) if user else None
@@ -90,7 +90,7 @@ async def test_app_client(
     @app.get("/optional-current-verified-user")
     def optional_current_verified_user(
         user: Optional[UserModel] = Depends(
-            fastapi_users.current_user(optional=True, verified=True)
+            fastapi_users_pelicanq.current_user(optional=True, verified=True)
         ),
     ):
         return schemas.model_validate(User, user) if user else None
@@ -98,7 +98,7 @@ async def test_app_client(
     @app.get("/optional-current-superuser")
     def optional_current_superuser(
         user: Optional[UserModel] = Depends(
-            fastapi_users.current_user(optional=True, active=True, superuser=True)
+            fastapi_users_pelicanq.current_user(optional=True, active=True, superuser=True)
         ),
     ):
         return schemas.model_validate(User, user) if user else None
@@ -106,7 +106,7 @@ async def test_app_client(
     @app.get("/optional-current-verified-superuser")
     def optional_current_verified_superuser(
         user: Optional[UserModel] = Depends(
-            fastapi_users.current_user(
+            fastapi_users_pelicanq.current_user(
                 optional=True, active=True, verified=True, superuser=True
             )
         ),
@@ -117,7 +117,7 @@ async def test_app_client(
         yield client
 
 
-@pytest.mark.fastapi_users
+@pytest.mark.fastapi_users_pelicanq
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
     "path,method",
@@ -143,14 +143,14 @@ async def test_route_exists(test_app_client: httpx.AsyncClient, path: str, metho
     )
 
 
-@pytest.mark.fastapi_users
+@pytest.mark.fastapi_users_pelicanq
 @pytest.mark.asyncio
 async def test_custom_users_route_not_catched(test_app_client: httpx.AsyncClient):
     response = await test_app_client.request("DELETE", "/users/me")
     assert response.status_code == status.HTTP_200_OK
 
 
-@pytest.mark.fastapi_users
+@pytest.mark.fastapi_users_pelicanq
 @pytest.mark.asyncio
 class TestGetCurrentUser:
     async def test_missing_token(self, test_app_client: httpx.AsyncClient):
@@ -172,7 +172,7 @@ class TestGetCurrentUser:
         assert response.status_code == status.HTTP_200_OK
 
 
-@pytest.mark.fastapi_users
+@pytest.mark.fastapi_users_pelicanq
 @pytest.mark.asyncio
 class TestGetCurrentActiveUser:
     async def test_missing_token(self, test_app_client: httpx.AsyncClient):
@@ -203,7 +203,7 @@ class TestGetCurrentActiveUser:
         assert response.status_code == status.HTTP_200_OK
 
 
-@pytest.mark.fastapi_users
+@pytest.mark.fastapi_users_pelicanq
 @pytest.mark.asyncio
 class TestGetCurrentVerifiedUser:
     async def test_missing_token(self, test_app_client: httpx.AsyncClient):
@@ -235,7 +235,7 @@ class TestGetCurrentVerifiedUser:
         assert response.status_code == status.HTTP_200_OK
 
 
-@pytest.mark.fastapi_users
+@pytest.mark.fastapi_users_pelicanq
 @pytest.mark.asyncio
 class TestGetCurrentSuperuser:
     async def test_missing_token(self, test_app_client: httpx.AsyncClient):
@@ -265,7 +265,7 @@ class TestGetCurrentSuperuser:
         assert response.status_code == status.HTTP_200_OK
 
 
-@pytest.mark.fastapi_users
+@pytest.mark.fastapi_users_pelicanq
 @pytest.mark.asyncio
 class TestGetCurrentVerifiedSuperuser:
     async def test_missing_token(self, test_app_client: httpx.AsyncClient):
@@ -315,7 +315,7 @@ class TestGetCurrentVerifiedSuperuser:
         assert response.status_code == status.HTTP_200_OK
 
 
-@pytest.mark.fastapi_users
+@pytest.mark.fastapi_users_pelicanq
 @pytest.mark.asyncio
 class TestOptionalGetCurrentUser:
     async def test_missing_token(self, test_app_client: httpx.AsyncClient):
@@ -340,7 +340,7 @@ class TestOptionalGetCurrentUser:
         assert response.json() is not None
 
 
-@pytest.mark.fastapi_users
+@pytest.mark.fastapi_users_pelicanq
 @pytest.mark.asyncio
 class TestOptionalGetCurrentVerifiedUser:
     async def test_missing_token(self, test_app_client: httpx.AsyncClient):
@@ -376,7 +376,7 @@ class TestOptionalGetCurrentVerifiedUser:
         assert response.json() is not None
 
 
-@pytest.mark.fastapi_users
+@pytest.mark.fastapi_users_pelicanq
 @pytest.mark.asyncio
 class TestOptionalGetCurrentActiveUser:
     async def test_missing_token(self, test_app_client: httpx.AsyncClient):
@@ -412,7 +412,7 @@ class TestOptionalGetCurrentActiveUser:
         assert response.json() is not None
 
 
-@pytest.mark.fastapi_users
+@pytest.mark.fastapi_users_pelicanq
 @pytest.mark.asyncio
 class TestOptionalGetCurrentSuperuser:
     async def test_missing_token(self, test_app_client: httpx.AsyncClient):
@@ -448,7 +448,7 @@ class TestOptionalGetCurrentSuperuser:
         assert response.json() is not None
 
 
-@pytest.mark.fastapi_users
+@pytest.mark.fastapi_users_pelicanq
 @pytest.mark.asyncio
 class TestOptionalGetCurrentVerifiedSuperuser:
     async def test_missing_token(self, test_app_client: httpx.AsyncClient):

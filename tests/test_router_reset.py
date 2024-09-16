@@ -5,13 +5,13 @@ import pytest
 import pytest_asyncio
 from fastapi import FastAPI, status
 
-from fastapi_users.exceptions import (
+from fastapi_users_pelicanq.exceptions import (
     InvalidPasswordException,
     InvalidResetPasswordToken,
     UserInactive,
     UserNotExists,
 )
-from fastapi_users.router import ErrorCode, get_reset_password_router
+from fastapi_users_pelicanq.router import ErrorCode, get_reset_password_router
 from tests.conftest import AsyncMethodMocker, UserManagerMock
 
 

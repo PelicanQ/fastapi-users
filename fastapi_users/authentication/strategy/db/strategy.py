@@ -2,11 +2,11 @@ import secrets
 from datetime import datetime, timedelta, timezone
 from typing import Any, Dict, Generic, Optional
 
-from fastapi_users import exceptions, models
-from fastapi_users.authentication.strategy.base import Strategy
-from fastapi_users.authentication.strategy.db.adapter import AccessTokenDatabase
-from fastapi_users.authentication.strategy.db.models import AP
-from fastapi_users.manager import BaseUserManager
+from fastapi_users_pelicanq import exceptions, models
+from fastapi_users_pelicanq.authentication.strategy.base import Strategy
+from fastapi_users_pelicanq.authentication.strategy.db.adapter import AccessTokenDatabase
+from fastapi_users_pelicanq.authentication.strategy.db.models import AP
+from fastapi_users_pelicanq.manager import BaseUserManager
 
 
 class DatabaseStrategy(

@@ -22,14 +22,14 @@ from httpx_oauth.oauth2 import OAuth2
 from pydantic import UUID4, SecretStr
 from pytest_mock import MockerFixture
 
-from fastapi_users import exceptions, models, schemas
-from fastapi_users.authentication import AuthenticationBackend, BearerTransport
-from fastapi_users.authentication.strategy import Strategy
-from fastapi_users.db import BaseUserDatabase
-from fastapi_users.jwt import SecretType
-from fastapi_users.manager import BaseUserManager, UUIDIDMixin
-from fastapi_users.openapi import OpenAPIResponseType
-from fastapi_users.password import PasswordHelper
+from fastapi_users_pelicanq import exceptions, models, schemas
+from fastapi_users_pelicanq.authentication import AuthenticationBackend, BearerTransport
+from fastapi_users_pelicanq.authentication.strategy import Strategy
+from fastapi_users_pelicanq.db import BaseUserDatabase
+from fastapi_users_pelicanq.jwt import SecretType
+from fastapi_users_pelicanq.manager import BaseUserManager, UUIDIDMixin
+from fastapi_users_pelicanq.openapi import OpenAPIResponseType
+from fastapi_users_pelicanq.password import PasswordHelper
 
 password_helper = PasswordHelper()
 guinevere_password_hash = password_helper.hash("guinevere")

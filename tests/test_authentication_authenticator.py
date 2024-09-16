@@ -6,13 +6,13 @@ import pytest_asyncio
 from fastapi import Depends, FastAPI, Request, status
 from fastapi.security.base import SecurityBase
 
-from fastapi_users import models
-from fastapi_users.authentication import AuthenticationBackend, Authenticator
-from fastapi_users.authentication.authenticator import DuplicateBackendNamesError
-from fastapi_users.authentication.strategy import Strategy
-from fastapi_users.authentication.transport import Transport
-from fastapi_users.manager import BaseUserManager
-from fastapi_users.types import DependencyCallable
+from fastapi_users_pelicanq import models
+from fastapi_users_pelicanq.authentication import AuthenticationBackend, Authenticator
+from fastapi_users_pelicanq.authentication.authenticator import DuplicateBackendNamesError
+from fastapi_users_pelicanq.authentication.strategy import Strategy
+from fastapi_users_pelicanq.authentication.transport import Transport
+from fastapi_users_pelicanq.manager import BaseUserManager
+from fastapi_users_pelicanq.types import DependencyCallable
 from tests.conftest import User, UserModel
 
 

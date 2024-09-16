@@ -3,12 +3,12 @@ from fastapi.responses import JSONResponse
 from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel
 
-from fastapi_users.authentication.transport.base import (
+from fastapi_users_pelicanq.authentication.transport.base import (
     Transport,
     TransportLogoutNotSupportedError,
 )
-from fastapi_users.openapi import OpenAPIResponseType
-from fastapi_users.schemas import model_dump
+from fastapi_users_pelicanq.openapi import OpenAPIResponseType
+from fastapi_users_pelicanq.schemas import model_dump
 
 
 class BearerResponse(BaseModel):

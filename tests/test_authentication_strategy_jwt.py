@@ -1,10 +1,10 @@
 import pytest
 
-from fastapi_users.authentication.strategy import (
+from fastapi_users_pelicanq.authentication.strategy import (
     JWTStrategy,
     StrategyDestroyNotSupportedError,
 )
-from fastapi_users.jwt import SecretType, decode_jwt, generate_jwt
+from fastapi_users_pelicanq.jwt import SecretType, decode_jwt, generate_jwt
 from tests.conftest import IDType, UserModel
 
 LIFETIME = 3600

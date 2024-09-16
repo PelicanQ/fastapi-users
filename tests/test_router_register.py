@@ -5,7 +5,7 @@ import pytest
 import pytest_asyncio
 from fastapi import FastAPI, status
 
-from fastapi_users.router import ErrorCode, get_register_router
+from fastapi_users_pelicanq.router import ErrorCode, get_register_router
 from tests.conftest import User, UserCreate
 
 

@@ -2,16 +2,16 @@ from typing import Generic
 
 from fastapi import Response, status
 
-from fastapi_users import models
-from fastapi_users.authentication.strategy import (
+from fastapi_users_pelicanq import models
+from fastapi_users_pelicanq.authentication.strategy import (
     Strategy,
     StrategyDestroyNotSupportedError,
 )
-from fastapi_users.authentication.transport import (
+from fastapi_users_pelicanq.authentication.transport import (
     Transport,
     TransportLogoutNotSupportedError,
 )
-from fastapi_users.types import DependencyCallable
+from fastapi_users_pelicanq.types import DependencyCallable
 
 
 class AuthenticationBackend(Generic[models.UP, models.ID]):

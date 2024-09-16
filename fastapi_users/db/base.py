@@ -1,7 +1,7 @@
 from typing import Any, Dict, Generic, Optional
 
-from fastapi_users.models import ID, OAP, UOAP, UP
-from fastapi_users.types import DependencyCallable
+from fastapi_users_pelicanq.models import ID, OAP, UOAP, UP
+from fastapi_users_pelicanq.types import DependencyCallable
 
 
 class BaseUserDatabase(Generic[UP, ID]):

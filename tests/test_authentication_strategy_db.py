@@ -5,7 +5,7 @@ from typing import Any, Dict, Optional
 
 import pytest
 
-from fastapi_users.authentication.strategy import (
+from fastapi_users_pelicanq.authentication.strategy import (
     AccessTokenDatabase,
     AccessTokenProtocol,
     DatabaseStrategy,

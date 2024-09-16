@@ -1,7 +1,7 @@
 from typing import Generic, Optional, Protocol
 
-from fastapi_users import models
-from fastapi_users.manager import BaseUserManager
+from fastapi_users_pelicanq import models
+from fastapi_users_pelicanq.manager import BaseUserManager
 
 
 class StrategyDestroyNotSupportedError(Exception):

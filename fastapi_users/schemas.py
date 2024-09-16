@@ -3,7 +3,7 @@ from typing import Any, Dict, Generic, List, Optional, Type, TypeVar
 from pydantic import BaseModel, ConfigDict, EmailStr
 from pydantic.version import VERSION as PYDANTIC_VERSION
 
-from fastapi_users import models
+from fastapi_users_pelicanq import models
 
 PYDANTIC_V2 = PYDANTIC_VERSION.startswith("2.")
 

@@ -5,11 +5,11 @@ from typing import Any, Callable, Generic, List, Optional, Sequence, Tuple, cast
 from fastapi import Depends, HTTPException, status
 from makefun import with_signature
 
-from fastapi_users import models
-from fastapi_users.authentication.backend import AuthenticationBackend
-from fastapi_users.authentication.strategy import Strategy
-from fastapi_users.manager import BaseUserManager, UserManagerDependency
-from fastapi_users.types import DependencyCallable
+from fastapi_users_pelicanq import models
+from fastapi_users_pelicanq.authentication.backend import AuthenticationBackend
+from fastapi_users_pelicanq.authentication.strategy import Strategy
+from fastapi_users_pelicanq.manager import BaseUserManager, UserManagerDependency
+from fastapi_users_pelicanq.types import DependencyCallable
 
 INVALID_CHARS_PATTERN = re.compile(r"[^0-9a-zA-Z_]")
 INVALID_LEADING_CHARS_PATTERN = re.compile(r"^[^a-zA-Z_]+")

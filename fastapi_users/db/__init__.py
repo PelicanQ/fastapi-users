@@ -1,4 +1,4 @@
-from fastapi_users.db.base import BaseUserDatabase, UserDatabaseDependency
+from fastapi_users_pelicanq.db.base import BaseUserDatabase, UserDatabaseDependency
 
 __all__ = ["BaseUserDatabase", "UserDatabaseDependency"]
 

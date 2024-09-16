@@ -2,7 +2,7 @@ import uuid
 
 import pytest
 
-from fastapi_users.db import BaseUserDatabase
+from fastapi_users_pelicanq.db import BaseUserDatabase
 from tests.conftest import IDType, OAuthAccountModel, UserModel
 
 

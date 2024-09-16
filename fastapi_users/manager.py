@@ -5,11 +5,11 @@ import jwt
 from fastapi import Request, Response
 from fastapi.security import OAuth2PasswordRequestForm
 
-from fastapi_users import exceptions, models, schemas
-from fastapi_users.db import BaseUserDatabase
-from fastapi_users.jwt import SecretType, decode_jwt, generate_jwt
-from fastapi_users.password import PasswordHelper, PasswordHelperProtocol
-from fastapi_users.types import DependencyCallable
+from fastapi_users_pelicanq import exceptions, models, schemas
+from fastapi_users_pelicanq.db import BaseUserDatabase
+from fastapi_users_pelicanq.jwt import SecretType, decode_jwt, generate_jwt
+from fastapi_users_pelicanq.password import PasswordHelper, PasswordHelperProtocol
+from fastapi_users_pelicanq.types import DependencyCallable
 
 RESET_PASSWORD_TOKEN_AUDIENCE = "fastapi-users:reset"
 VERIFY_USER_TOKEN_AUDIENCE = "fastapi-users:verify"

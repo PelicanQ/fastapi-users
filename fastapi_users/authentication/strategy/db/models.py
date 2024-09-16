@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Protocol, TypeVar
 
-from fastapi_users import models
+from fastapi_users_pelicanq import models
 
 
 class AccessTokenProtocol(Protocol[models.ID]):

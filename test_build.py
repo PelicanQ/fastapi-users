@@ -2,7 +2,7 @@
 import sys
 
 try:
-    from fastapi_users import FastAPIUsers
+    from fastapi_users_pelicanq import FastAPIUsers
 except:
     sys.exit(1)
 

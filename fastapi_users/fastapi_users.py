@@ -2,11 +2,11 @@ from typing import Generic, Optional, Sequence, Type
 
 from fastapi import APIRouter
 
-from fastapi_users import models, schemas
-from fastapi_users.authentication import AuthenticationBackend, Authenticator
-from fastapi_users.jwt import SecretType
-from fastapi_users.manager import UserManagerDependency
-from fastapi_users.router import (
+from fastapi_users_pelicanq import models, schemas
+from fastapi_users_pelicanq.authentication import AuthenticationBackend, Authenticator
+from fastapi_users_pelicanq.jwt import SecretType
+from fastapi_users_pelicanq.manager import UserManagerDependency
+from fastapi_users_pelicanq.router import (
     get_auth_router,
     get_register_router,
     get_reset_password_router,
@@ -17,8 +17,8 @@ from fastapi_users.router import (
 try:
     from httpx_oauth.oauth2 import BaseOAuth2
 
-    from fastapi_users.router import get_oauth_router
-    from fastapi_users.router.oauth import get_oauth_associate_router
+    from fastapi_users_pelicanq.router import get_oauth_router
+    from fastapi_users_pelicanq.router.oauth import get_oauth_associate_router
 except ModuleNotFoundError:  # pragma: no cover
     BaseOAuth2 = Type  # type: ignore
 

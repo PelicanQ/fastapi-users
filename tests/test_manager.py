@@ -5,7 +5,7 @@ import pytest
 from fastapi.security import OAuth2PasswordRequestForm
 from pytest_mock import MockerFixture
 
-from fastapi_users.exceptions import (
+from fastapi_users_pelicanq.exceptions import (
     InvalidID,
     InvalidPasswordException,
     InvalidResetPasswordToken,
@@ -15,8 +15,8 @@ from fastapi_users.exceptions import (
     UserInactive,
     UserNotExists,
 )
-from fastapi_users.jwt import decode_jwt, generate_jwt
-from fastapi_users.manager import IntegerIDMixin
+from fastapi_users_pelicanq.jwt import decode_jwt, generate_jwt
+from fastapi_users_pelicanq.manager import IntegerIDMixin
 from tests.conftest import (
     UserCreate,
     UserManagerMock,

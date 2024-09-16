@@ -2,10 +2,10 @@ from typing import Type
 
 from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
 
-from fastapi_users import exceptions, models, schemas
-from fastapi_users.authentication import Authenticator
-from fastapi_users.manager import BaseUserManager, UserManagerDependency
-from fastapi_users.router.common import ErrorCode, ErrorModel
+from fastapi_users_pelicanq import exceptions, models, schemas
+from fastapi_users_pelicanq.authentication import Authenticator
+from fastapi_users_pelicanq.manager import BaseUserManager, UserManagerDependency
+from fastapi_users_pelicanq.router.common import ErrorCode, ErrorModel
 
 
 def get_users_router(

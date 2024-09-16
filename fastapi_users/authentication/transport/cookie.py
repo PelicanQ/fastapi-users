@@ -3,8 +3,8 @@ from typing import Literal, Optional
 from fastapi import Response, status
 from fastapi.security import APIKeyCookie
 
-from fastapi_users.authentication.transport.base import Transport
-from fastapi_users.openapi import OpenAPIResponseType
+from fastapi_users_pelicanq.authentication.transport.base import Transport
+from fastapi_users_pelicanq.openapi import OpenAPIResponseType
 
 
 class CookieTransport(Transport):

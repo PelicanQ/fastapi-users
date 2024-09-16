@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Body, Depends, HTTPException, Request, status
 from pydantic import EmailStr
 
-from fastapi_users import exceptions, models
-from fastapi_users.manager import BaseUserManager, UserManagerDependency
-from fastapi_users.openapi import OpenAPIResponseType
-from fastapi_users.router.common import ErrorCode, ErrorModel
+from fastapi_users_pelicanq import exceptions, models
+from fastapi_users_pelicanq.manager import BaseUserManager, UserManagerDependency
+from fastapi_users_pelicanq.openapi import OpenAPIResponseType
+from fastapi_users_pelicanq.router.common import ErrorCode, ErrorModel
 
 RESET_PASSWORD_RESPONSES: OpenAPIResponseType = {
     status.HTTP_400_BAD_REQUEST: {

@@ -2,11 +2,11 @@ import pytest
 from fastapi import status
 from fastapi.responses import JSONResponse
 
-from fastapi_users.authentication.transport import (
+from fastapi_users_pelicanq.authentication.transport import (
     BearerTransport,
     TransportLogoutNotSupportedError,
 )
-from fastapi_users.authentication.transport.bearer import BearerResponse
+from fastapi_users_pelicanq.authentication.transport.bearer import BearerResponse
 
 
 @pytest.fixture()

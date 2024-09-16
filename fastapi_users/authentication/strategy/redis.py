@@ -3,9 +3,9 @@ from typing import Generic, Optional
 
 import redis.asyncio
 
-from fastapi_users import exceptions, models
-from fastapi_users.authentication.strategy.base import Strategy
-from fastapi_users.manager import BaseUserManager
+from fastapi_users_pelicanq import exceptions, models
+from fastapi_users_pelicanq.authentication.strategy.base import Strategy
+from fastapi_users_pelicanq.manager import BaseUserManager
 
 
 class RedisStrategy(Strategy[models.UP, models.ID], Generic[models.UP, models.ID]):

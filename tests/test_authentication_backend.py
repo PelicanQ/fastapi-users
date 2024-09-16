@@ -3,15 +3,15 @@ from typing import Callable, Generic, Optional, Type, cast
 import pytest
 from fastapi import Response
 
-from fastapi_users import models
-from fastapi_users.authentication import (
+from fastapi_users_pelicanq import models
+from fastapi_users_pelicanq.authentication import (
     AuthenticationBackend,
     BearerTransport,
     Strategy,
 )
-from fastapi_users.authentication.strategy import StrategyDestroyNotSupportedError
-from fastapi_users.authentication.transport.base import Transport
-from fastapi_users.manager import BaseUserManager
+from fastapi_users_pelicanq.authentication.strategy import StrategyDestroyNotSupportedError
+from fastapi_users_pelicanq.authentication.transport.base import Transport
+from fastapi_users_pelicanq.manager import BaseUserManager
 from tests.conftest import MockStrategy, MockTransport, UserModel
 
 

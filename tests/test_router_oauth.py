@@ -6,10 +6,10 @@ import pytest_asyncio
 from fastapi import FastAPI, status
 from httpx_oauth.oauth2 import BaseOAuth2, OAuth2
 
-from fastapi_users import exceptions
-from fastapi_users.authentication import AuthenticationBackend, Authenticator
-from fastapi_users.router.common import ErrorCode
-from fastapi_users.router.oauth import (
+from fastapi_users_pelicanq import exceptions
+from fastapi_users_pelicanq.authentication import AuthenticationBackend, Authenticator
+from fastapi_users_pelicanq.router.common import ErrorCode
+from fastapi_users_pelicanq.router.oauth import (
     generate_state_token,
     get_oauth_associate_router,
     get_oauth_router,

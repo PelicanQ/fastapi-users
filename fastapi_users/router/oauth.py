@@ -6,12 +6,12 @@ from httpx_oauth.integrations.fastapi import OAuth2AuthorizeCallback
 from httpx_oauth.oauth2 import BaseOAuth2, OAuth2Token
 from pydantic import BaseModel
 
-from fastapi_users import models, schemas
-from fastapi_users.authentication import AuthenticationBackend, Authenticator, Strategy
-from fastapi_users.exceptions import UserAlreadyExists
-from fastapi_users.jwt import SecretType, decode_jwt, generate_jwt
-from fastapi_users.manager import BaseUserManager, UserManagerDependency
-from fastapi_users.router.common import ErrorCode, ErrorModel
+from fastapi_users_pelicanq import models, schemas
+from fastapi_users_pelicanq.authentication import AuthenticationBackend, Authenticator, Strategy
+from fastapi_users_pelicanq.exceptions import UserAlreadyExists
+from fastapi_users_pelicanq.jwt import SecretType, decode_jwt, generate_jwt
+from fastapi_users_pelicanq.manager import BaseUserManager, UserManagerDependency
+from fastapi_users_pelicanq.router.common import ErrorCode, ErrorModel
 
 STATE_TOKEN_AUDIENCE = "fastapi-users:oauth-state"
 

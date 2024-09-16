@@ -3,7 +3,7 @@ from typing import Protocol
 from fastapi import Response
 from fastapi.security.base import SecurityBase
 
-from fastapi_users.openapi import OpenAPIResponseType
+from fastapi_users_pelicanq.openapi import OpenAPIResponseType
 
 
 class TransportLogoutNotSupportedError(Exception):

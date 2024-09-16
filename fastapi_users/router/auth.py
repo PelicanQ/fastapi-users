@@ -3,11 +3,11 @@ from typing import Tuple
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.security import OAuth2PasswordRequestForm
 
-from fastapi_users import models
-from fastapi_users.authentication import AuthenticationBackend, Authenticator, Strategy
-from fastapi_users.manager import BaseUserManager, UserManagerDependency
-from fastapi_users.openapi import OpenAPIResponseType
-from fastapi_users.router.common import ErrorCode, ErrorModel
+from fastapi_users_pelicanq import models
+from fastapi_users_pelicanq.authentication import AuthenticationBackend, Authenticator, Strategy
+from fastapi_users_pelicanq.manager import BaseUserManager, UserManagerDependency
+from fastapi_users_pelicanq.openapi import OpenAPIResponseType
+from fastapi_users_pelicanq.router.common import ErrorCode, ErrorModel
 
 
 def get_auth_router(
