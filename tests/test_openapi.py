@@ -3,7 +3,7 @@ import pytest
 import pytest_asyncio
 from fastapi import FastAPI, status
 
-from fastapi_users_pelicanq.fastapi_users_pelicanq import FastAPIUsers
+from fastapi_users_pelicanq.fastapi_users import FastAPIUsers
 from tests.conftest import IDType, User, UserCreate, UserModel, UserUpdate
 
 
