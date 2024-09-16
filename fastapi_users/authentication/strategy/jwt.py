@@ -62,8 +62,13 @@ class JWTStrategy(Strategy[models.UP, models.ID], Generic[models.UP, models.ID])
         except (exceptions.UserNotExists, exceptions.InvalidID):
             return None
 
+    # CUSTOM: adding this to add permissions into token. Called in write_token
+    async def get_user_permissions(self, user: models.UP) -> list[str]:
+        ...
+
     async def write_token(self, user: models.UP) -> str:
-        data = {"sub": str(user.id), "aud": self.token_audience}
+        permissions = await self.get_user_permissions(user)
+        data = {"sub": str(user.id), "aud": self.token_audience, "permissions": permissions}
         return generate_jwt(
             data, self.encode_key, self.lifetime_seconds, algorithm=self.algorithm
         )
