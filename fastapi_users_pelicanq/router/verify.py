@@ -1,13 +1,18 @@
 from typing import Type
 
-from fastapi import APIRouter, Body, Depends, HTTPException, Request, status
-from pydantic import EmailStr
+from fastapi import APIRouter, Depends, HTTPException, Request, status
+from pydantic import BaseModel, EmailStr
 
 from fastapi_users_pelicanq import exceptions, models, schemas
 from fastapi_users_pelicanq.manager import BaseUserManager, UserManagerDependency
 from fastapi_users_pelicanq.router.common import ErrorCode, ErrorModel
 
-
+class RequestVerifyBody(BaseModel):
+    email: EmailStr
+    
+class VerifyBody(BaseModel):
+    token: str
+    
 def get_verify_router(
     get_user_manager: UserManagerDependency[models.UP, models.ID],
     user_schema: Type[schemas.U],
@@ -21,9 +26,10 @@ def get_verify_router(
     )
     async def request_verify_token(
         request: Request,
-        email: EmailStr = Body(..., embed=True),
+        body: RequestVerifyBody,
         user_manager: BaseUserManager[models.UP, models.ID] = Depends(get_user_manager),
     ):
+        email = body.email
         try:
             user = await user_manager.get_by_email(email)
             await user_manager.request_verify(user, request)
@@ -65,9 +71,10 @@ def get_verify_router(
     )
     async def verify(
         request: Request,
-        token: str = Body(..., embed=True),
+        body: VerifyBody,
         user_manager: BaseUserManager[models.UP, models.ID] = Depends(get_user_manager),
     ):
+        token = body.token
         try:
             user = await user_manager.verify(token, request)
             return schemas.model_validate(user_schema, user)

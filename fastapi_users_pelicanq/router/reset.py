@@ -1,5 +1,5 @@
-from fastapi import APIRouter, Body, Depends, HTTPException, Request, status
-from pydantic import EmailStr
+from fastapi import APIRouter,  Depends, HTTPException, Request, status
+from pydantic import BaseModel, EmailStr
 
 from fastapi_users_pelicanq import exceptions, models
 from fastapi_users_pelicanq.manager import BaseUserManager, UserManagerDependency
@@ -31,6 +31,12 @@ RESET_PASSWORD_RESPONSES: OpenAPIResponseType = {
     },
 }
 
+class ForgotPasswordBody(BaseModel):
+    email: EmailStr
+    
+class ResetPasswordBody(BaseModel):
+    password: str
+    token: str
 
 def get_reset_password_router(
     get_user_manager: UserManagerDependency[models.UP, models.ID],
@@ -45,9 +51,10 @@ def get_reset_password_router(
     )
     async def forgot_password(
         request: Request,
-        email: EmailStr = Body(..., embed=True),
+        body: ForgotPasswordBody,
         user_manager: BaseUserManager[models.UP, models.ID] = Depends(get_user_manager),
     ):
+        email = body.email
         try:
             user = await user_manager.get_by_email(email)
         except exceptions.UserNotExists:
@@ -67,10 +74,11 @@ def get_reset_password_router(
     )
     async def reset_password(
         request: Request,
-        token: str = Body(...),
-        password: str = Body(...),
+        body: ResetPasswordBody,
         user_manager: BaseUserManager[models.UP, models.ID] = Depends(get_user_manager),
     ):
+        token = body.token
+        password = body.password
         try:
             await user_manager.reset_password(token, password, request)
         except (
